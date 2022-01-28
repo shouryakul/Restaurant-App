@@ -1,0 +1,60 @@
+<nav class="navbar navbar-light bg-dark">
+    <div class="container-fluid">
+        <h1>Restaurant App</h1>
+        <div class="d-flex">
+            <button routerLink="/log" routerLinkActive="active" class="btn btn-danger">Logout</button>
+        </div>
+    </div>
+</nav>
+<div class="conatainer">
+    <div>
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h3 class="text-center">User Dashboard</h3>
+            </div>
+        </div>
+        <hr>
+        <!--Table-->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{Name}}</td>
+                    <td>{{Email}}</td>
+                    <td> {{Password}}</td>
+                    <td><button class="btn btn-warning" (click)="onUpdatePass()">Update Password</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="updatePass" *ngIf="showInputBox">
+        <form #passChange="ngForm" (ngSubmit)="onSubmit(passChange)">
+            <div class="container-fluid form-outline mb-4">
+                <label class="form-label" for="psw"><b>Update Password</b></label><br>
+                <input type="text" #pass="ngModel" value="" placeholder="Enter new Password" name="passchange"
+                    autocomplete="off" required ngModel>
+                <div *ngIf="pass.touched && pass.invalid" class="alert alert-danger">
+                    <div *ngIf="pass.errors?.['required']">
+                        Password is required
+                    </div>
+                    <div *ngIf="pass.errors?.['minlength']">
+                        Password requires 8 Characters
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <button type="submit" class="btn btn-outline-success btn-block">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <br>
+    <button routerLink="/menu" class="container-fluid btn btn-info btn-block">Show Menu Card</button>
+</div>
